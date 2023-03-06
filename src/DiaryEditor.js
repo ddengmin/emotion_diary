@@ -16,8 +16,9 @@ const DiaryEditor = () => {
       value={state.author}
       onChange={(e) => {
         setState({
+          ...state,
           author : e.target.value,
-          content : state.content,
+          //content : state.content,
         });
       }}
       />
@@ -27,8 +28,9 @@ const DiaryEditor = () => {
         value={state.content}
         onChange={(e)=> {
           setState({
+            ...state,
             content : e.target.value,
-            author : state.author,
+            //author : state.author,
           });
         }}
       />
