@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+//useRef는 useState와 마찬가지로 react의 기능임.
 
 const DiaryEditor = () => {
   const authorInput = useRef();
@@ -19,14 +20,14 @@ const DiaryEditor = () => {
 
   const handleSubmit = () => {
     if (state.author.length < 1) {
-      alert("작성자는 최소 1글자 이상 입력해주세요.");
-      // authorInput.current.focus();
+      //focus
+      authorInput.current.focus();
       return;
     }
 
     if (state.content.length < 5) {
-      alert("일기 본문은 최소 5글자 이상 입력해주세요.");
-      // contentInput.current.focus();
+      //focus
+      contentInput.current.focus();
       return;
     }
 
@@ -40,6 +41,7 @@ const DiaryEditor = () => {
       <div>
         <input
           ref={authorInput}
+          //input에 ref 넣어줌
           value={state.author}
           onChange={handleChangeState}
           name="author"
@@ -50,6 +52,7 @@ const DiaryEditor = () => {
       <div>
         <textarea
           ref={contentInput}
+          //input에 ref 넣어줌
           value={state.content}
           onChange={handleChangeState}
           name="content"
