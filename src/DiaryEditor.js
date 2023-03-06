@@ -5,11 +5,7 @@ const DiaryEditor = () => {
     author: "",
     content: "",
   })
-  
-  const [author, setAuthor] = useState("");
-  //일기의 제목 핸들링
-  const [content, setContent] = useState("");
-  //일기의 본문 핸들링
+  //author, content 두개의 객체를 State로 합쳐주기.
 
   return (
   <div className="DiaryEditor">
@@ -17,19 +13,23 @@ const DiaryEditor = () => {
     <div>
       <input
       name="author"
-       value={author}
+      value={state.author}
       onChange={(e) => {
-        console.log(e.target.value);
-        console.log(e.target.name);
-        setAuthor(e.target.value);
+        setState({
+          author : e.target.value,
+          content : state.content,
+        });
       }}
       />
     </div>
     <div>
       <textarea 
-        value={content}
+        value={state.content}
         onChange={(e)=> {
-          setContent(e.target.value);
+          setState({
+            content : e.target.value,
+            author : state.author,
+          });
         }}
       />
     </div>
