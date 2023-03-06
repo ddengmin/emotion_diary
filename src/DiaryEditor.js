@@ -1,11 +1,21 @@
 import { useState } from "react";
 
 const DiaryEditor = () => {
-  const [state,setState] = useState({
+  const [state, setState] = useState({
     author: "",
     content: "",
-  })
-  //author, content 두개의 객체를 State로 합쳐주기.
+  });
+
+const handleChangeState = (e) => {
+  console.log(e.target.name);
+  console.log(e.target.value);
+
+  setState({
+    ...state,
+    [e.target.name]: e.target.value,
+  });
+  //setState로 결과값 반환
+};
 
   return (
   <div className="DiaryEditor">
@@ -14,25 +24,14 @@ const DiaryEditor = () => {
       <input
       name="author"
       value={state.author}
-      onChange={(e) => {
-        setState({
-          ...state,
-          author : e.target.value,
-          //content : state.content,
-        });
-      }}
+      onChange={handleChangeState}
       />
     </div>
     <div>
       <textarea 
+        name="content"
         value={state.content}
-        onChange={(e)=> {
-          setState({
-            ...state,
-            content : e.target.value,
-            //author : state.author,
-          });
-        }}
+        onChange={handleChangeState}
       />
     </div>
   </div>
