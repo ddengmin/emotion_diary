@@ -33,7 +33,7 @@ function App() {
     <div className="App">
       <DiaryEditor/>
       {/* 자식 요소로 추가 */}
-      <DiaryList diaryList={undefined} />
+      <DiaryList diaryList={dummyList} />
       {/* 자식 요소로 추가 */}
     </div>
   );
