@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
-//useRef는 useState와 마찬가지로 react의 기능임.
 
-const DiaryEditor = () => {
+const DiaryEditor = ({ onCreate }) => {
   const authorInput = useRef();
   const contentInput = useRef();
+  //onCreate 함수를 전달, 
 
   const [state, setState] = useState({
     author: "",
@@ -20,19 +20,23 @@ const DiaryEditor = () => {
 
   const handleSubmit = () => {
     if (state.author.length < 1) {
-      //focus
       authorInput.current.focus();
       return;
     }
 
     if (state.content.length < 5) {
-      //focus
       contentInput.current.focus();
       return;
     }
 
-    console.log(state);
-    alert("저장 성공!");
+    onCreate(state.author, state.content, state.emotion);
+    alert("저장 성공");
+    setState({
+      author: "",
+      content: "",
+      emotion: 1
+    });
+    //setState로 기본값 초기화. 없으면 위에 일기장이 그대로 남음
   };
 
   return (
@@ -41,7 +45,6 @@ const DiaryEditor = () => {
       <div>
         <input
           ref={authorInput}
-          //input에 ref 넣어줌
           value={state.author}
           onChange={handleChangeState}
           name="author"
@@ -52,7 +55,6 @@ const DiaryEditor = () => {
       <div>
         <textarea
           ref={contentInput}
-          //input에 ref 넣어줌
           value={state.content}
           onChange={handleChangeState}
           name="content"
